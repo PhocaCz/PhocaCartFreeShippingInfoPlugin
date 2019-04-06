@@ -14,7 +14,7 @@ Phoca Cart View - Free Shipping Info Plugin - this plugin displays information a
 
 ## Project page
 
-[Phoca Cart Free Shipping Info Plugin](https://www.phoca.cz/phocacart-extensions/2-plugins/100-xxx)
+[Phoca Cart Free Shipping Info Plugin](https://www.phoca.cz/phocacart-extensions/2-plugins/35-view-free-shipping-info-plugin)
 
 [Phoca Cart Info Page](https://www.phoca.cz/project/phocacart-joomla-ecommerce)
 
