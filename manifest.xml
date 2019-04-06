@@ -1,0 +1,22 @@
+<updates>
+	<update>
+		<name><![CDATA[ Phoca Cart Free Shipping Info Plugin ]]></name>
+		<description><![CDATA[ Phoca Cart View - Free Shipping Info Plugin - this plugin displays information about remaining cost for customer to avail free shipping in Phoca Cart. ]]></description>
+		<element>free_shipping_info</element>
+		<folder>pcv</folder>
+		<type>plugin</type>
+		<version>3.1.8</version>
+		<infourl title="Phoca Cart Free Shipping Info Plugin 3.1.8">https://www.phoca.cz/</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartFreeShippingInfoPlugin/releases/download/3.1.8/plg_pcv_free_shipping_info_v3.1.8.zip</downloadurl>
+		</downloads>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer><![CDATA[ Phoca.cz ]]></maintainer>
+		<maintainerurl>https://www.phoca.cz/</maintainerurl>
+		<section>Updates</section>
+		<targetplatform name="joomla" version="3.9"/>
+		<client>0</client>
+	</update>
+</updates>

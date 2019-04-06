@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="pcv" method="upgrade" version="3">
+	<name>plg_pcv_free_shipping_info</name>
+	<author>Jan Pavelka (www.phoca.cz)</author>
+	<creationDate>06/04/2019</creationDate>
+	<authorEmail></authorEmail>
+	<authorUrl>https://www.phoca.cz</authorUrl>
+	<copyright>Jan Pavelka</copyright>
+	<license>GNU/GPL</license>
+	<version>3.1.8</version>
+	<description>PLG_PCV_FREE_SHIPPING_INFO_DESCRIPTION</description>
+	<projectName>PhocaCartFreeShippingInfoPlugin</projectName>
+
+	<files>
+		<folder>helpers</folder>
+		<filename plugin="free_shipping_info">free_shipping_info.php</filename>
+		<filename plugin="free_shipping_info">index.html</filename>
+	</files>
+
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_pcv_free_shipping_info.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_pcv_free_shipping_info.sys.ini</language>
+	</languages>
+
+	<administration>
+		<languages>
+			<language tag="en-GB">language/en-GB/en-GB.plg_pcv_free_shipping_info.ini</language>
+			<language tag="en-GB">language/en-GB/en-GB.plg_pcv_free_shipping_info.sys.ini</language>
+		</languages>
+	</administration>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic">	
+	
+	<field name="free_shipping_amount" default="" size="10" type="text" label="PLG_PCV_FREE_SHIPPING_INFO_FIELD_FREE_SHIPPING_ORDER_AMOUNT_LABEL" description="PLG_PCV_FREE_SHIPPING_INFO_FIELD_FREE_SHIPPING_ORDER_AMOUNT_DESC"/>
+	
+	
+
+<field name="display_product_info" type="radio" class="btn-group btn-group-yesno" default="0" label="PLG_PCV_FREE_SHIPPING_INFO_FIELD_DISPLAY_PRODUCT_INFORMATION_LABEL" description="PLG_PCV_FREE_SHIPPING_INFO_FIELD_DISPLAY_PRODUCT_INFORMATION_DESC">
+                <option value="1">PLG_PCV_FREE_SHIPPING_INFO_YES</option>
+                <option value="0">PLG_PCV_FREE_SHIPPING_INFO_NO</option>
+            </field>
+	
+	
+			</fieldset>
+		</fields>
+</config>
+
+	<updateservers>
+		<server type="extension" name="PLG_PCV_FREE_SHIPPING_INFO" priority="1"><![CDATA[https://raw.githubusercontent.com/PhocaCz/PhocaCartFreeShippingInfoPlugin/master/manifest.xml]]></server>
+	</updateservers>
+</extension>
