@@ -24,22 +24,12 @@ class plgPCVFree_Shipping_Info extends JPlugin
 	}
 
 
-    /**
-     * @param $context
-     * @param $product All information about currenctly added product
-     * @param $products All products in the cart
-     * @param $total Cart total info
-     * @return string
-     */
+    public function renderProductInfo($product) {
 
-	public function PCVonPopupAddToCartAfterHeader($context, $product, $products, $total) {
-
-
-		$free_shipping_amount = $this->params->get('free_shipping_amount', '');
         $display_product_info = $this->params->get('display_product_info', 0);
-		$price = new PhocacartPrice();
+        $price = new PhocacartPrice();
 
-		$o = array();
+        $o = array();
 
 
         if ($display_product_info == 1 && !empty($product) && isset($product['current_added']) && $product['current_added'] == 1)  {
@@ -89,17 +79,28 @@ class plgPCVFree_Shipping_Info extends JPlugin
 
         }
 
+        return trim(implode("\n", $o));
+    }
+
+    public function renderFreeShippingInfo($total) {
+
+        $free_shipping_amount = $this->params->get('free_shipping_amount', '');
+
+        $price = new PhocacartPrice();
+
+        $o = array();
+
         if (isset($total[0]['brutto']) && $total[0]['brutto'] > 0 && $free_shipping_amount > 0) {
 
 
 
-			if ($free_shipping_amount > $total[0]['brutto']) {
+            if ($free_shipping_amount > $total[0]['brutto']) {
 
-				$amountToDeliver = $free_shipping_amount - $total[0]['brutto'];
-				$amountToDeliver = $price->getPriceFormat($amountToDeliver);
-				$percentage      = $total[0]['brutto'] * 100 / $free_shipping_amount;
+                $amountToDeliver = $free_shipping_amount - $total[0]['brutto'];
+                $amountToDeliver = $price->getPriceFormat($amountToDeliver);
+                $percentage      = $total[0]['brutto'] * 100 / $free_shipping_amount;
 
-				$o[] = '<div class="ph-plg-free-shipping-info">'.JText::sprintf('PLG_PCV_FREE_SHIPPING_INFO_YOU_ARE_ONLY_AWAY_FROM_FREE_SHIPPING', $amountToDeliver).'</div>';
+                $o[] = '<div class="ph-plg-free-shipping-info">'.JText::sprintf('PLG_PCV_FREE_SHIPPING_INFO_YOU_ARE_ONLY_AWAY_FROM_FREE_SHIPPING', $amountToDeliver).'</div>';
 
 
                 $o[] = '<div class="ph-plg-free-shipping-info-progress progress">';
@@ -112,13 +113,39 @@ class plgPCVFree_Shipping_Info extends JPlugin
 
 
             } else if ($free_shipping_amount < $total[0]['brutto'] || ($free_shipping_amount * 100) == ($total[0]['brutto'] * 100)) {
-				/*
-			    $o[] = '<div class="ph-plg-free-shipping-info">'.  possible info about free shipping .'</div>';
-				*/
+                /*
+                $o[] = '<div class="ph-plg-free-shipping-info">'.  possible info about free shipping .'</div>';
+                */
             }
-		}
-
+        }
         return trim(implode("\n", $o));
-	}
+    }
+
+
+    /**
+     * @param $context
+     * @param $product All information about currenctly added product
+     * @param $products All products in the cart
+     * @param $total Cart total info
+     * @return string
+     */
+
+	public function PCVonPopupAddToCartAfterHeader($context, $product, $products, $total) {
+
+	    $o = $this->renderProductInfo($product);
+        $o .= $this->renderFreeShippingInfo($total);
+        return $o;
+
+    }
+
+    public function PCVonCheckoutAfterCart($context, $access, &$params, $total) {
+
+        $display_checkout_view = $this->params->get('display_checkout_view', 0);
+        if ($display_checkout_view == 0) {
+            return false;
+        }
+        return $this->renderFreeShippingInfo($total);
+
+    }
 }
 ?>
