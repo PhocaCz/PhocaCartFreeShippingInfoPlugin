@@ -2,12 +2,12 @@
 <extension type="plugin" group="pcv" method="upgrade" version="3">
 	<name>plg_pcv_free_shipping_info</name>
 	<author>Jan Pavelka (www.phoca.cz)</author>
-	<creationDate>01/05/2019</creationDate>
+	<creationDate>26/05/2019</creationDate>
 	<authorEmail></authorEmail>
 	<authorUrl>https://www.phoca.cz</authorUrl>
 	<copyright>Jan Pavelka</copyright>
 	<license>GNU/GPL</license>
-	<version>3.1.9</version>
+	<version>3.2.0</version>
 	<description>PLG_PCV_FREE_SHIPPING_INFO_DESCRIPTION</description>
 	<projectName>PhocaCartFreeShippingInfoPlugin</projectName>
 
@@ -15,7 +15,6 @@
 		<folder>helpers</folder>
 		<filename plugin="free_shipping_info">free_shipping_info.php</filename>
 		<filename plugin="free_shipping_info">index.html</filename>
-		<filename plugin="free_shipping_info">manifest.xml</filename>
 	</files>
 
 	<languages>
