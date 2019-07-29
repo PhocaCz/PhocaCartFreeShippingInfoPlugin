@@ -28,6 +28,7 @@ class plgPCVFree_Shipping_Info extends JPlugin
 
         $display_product_info = $this->params->get('display_product_info', 0);
         $price = new PhocacartPrice();
+        $s = PhocacartRenderStyle::getStyles();
 
         $o = array();
 
@@ -41,13 +42,13 @@ class plgPCVFree_Shipping_Info extends JPlugin
 
 
 
-            $o[] = '<div class="row ph-plg-product-info">';
+            $o[] = '<div class="'.$s['c']['row'].' ph-plg-product-info">';
 
-            $o[] = '<div class="row-item col-sm-6 col-md-6">';
-            $o[] = '<img class="img-responsive ph-image" src="'.JURI::base(true).'/'.$image->rel.'"  alt="'.$altValue.'"  />';
+            $o[] = '<div class="'.$s['c']['row-item'].' '.$s['c']['col.xs12.sm6.md6'].' ">';
+            $o[] = '<img class="'.$s['c']['img-responsive'].' ph-image" src="'.JURI::base(true).'/'.$image->rel.'"  alt="'.$altValue.'"  />';
             $o[] = '</div>';
 
-            $o[] = '<div class="row-item col-sm-6 col-md-6">';
+            $o[] = '<div class="'.$s['c']['row-item'].' '.$s['c']['col.xs12.sm6.md6'].' ">';
             $o[] = '<div class="ph-plg-product-info-title">'.$product['title'].'</div>';
 
             $o[] = '<ul class="ph-plg-product-attribute-box">';
@@ -60,7 +61,7 @@ class plgPCVFree_Shipping_Info extends JPlugin
                             $o[] = '<li class="ph-plg-product-attribute-item"><span class="ph-small ph-cart-small-attribute">' . $v3['atitle'] . ' ' . $v3['otitle'] . '</span>';
 
                             if (isset($v3['ovalue']) && urldecode($v3['ovalue']) != '') {
-                                echo ': <span class="ph-small ph-cart-small-attribute">' . htmlspecialchars(urldecode($v3['ovalue']), ENT_QUOTES, 'UTF-8') . '</span>';
+                                $o[] =  ': <span class="ph-small ph-cart-small-attribute">' . htmlspecialchars(urldecode($v3['ovalue']), ENT_QUOTES, 'UTF-8') . '</span>';
                             }
                             $o[] = '</li>';
                         }
