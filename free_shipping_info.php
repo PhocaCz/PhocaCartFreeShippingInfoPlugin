@@ -23,7 +23,6 @@ class plgPCVFree_Shipping_Info extends JPlugin
 
 	}
 
-
     public function renderProductInfo($product) {
 
         $display_product_info = $this->params->get('display_product_info', 0);
