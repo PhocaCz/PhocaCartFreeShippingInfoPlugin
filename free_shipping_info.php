@@ -89,30 +89,37 @@ class plgPCVFree_Shipping_Info extends JPlugin
         $price = new PhocacartPrice();
 
         $o = array();
+		
+		$amountToCalculate = 0;
+		if (isset($total[0]['netto']) && isset($total[0]['taxsum'])) {
+			$amountToCalculate = $total[0]['netto'] + $total[0]['taxsum'];
+		}
+		
+	
 
-        if (isset($total[0]['brutto']) && $total[0]['brutto'] > 0 && $free_shipping_amount > 0) {
+        if ($amountToCalculate > 0 && $free_shipping_amount > 0) {
 
 
 
-            if ($free_shipping_amount > $total[0]['brutto']) {
+            if ($free_shipping_amount > $amountToCalculate) {
 
-                $amountToDeliver = $free_shipping_amount - $total[0]['brutto'];
+                $amountToDeliver = $free_shipping_amount - $amountToCalculate;
                 $amountToDeliver = $price->getPriceFormat($amountToDeliver);
-                $percentage      = $total[0]['brutto'] * 100 / $free_shipping_amount;
+                $percentage      = $amountToCalculate * 100 / $free_shipping_amount;
 
                 $o[] = '<div class="ph-plg-free-shipping-info">'.JText::sprintf('PLG_PCV_FREE_SHIPPING_INFO_YOU_ARE_ONLY_AWAY_FROM_FREE_SHIPPING', $amountToDeliver).'</div>';
 
 
                 $o[] = '<div class="ph-plg-free-shipping-info-progress progress">';
-                $o[] = '<div class="progress-bar" role="progressbar" aria-valuenow="'.(int)$total[0]['brutto'].'" aria-valuemin="0" aria-valuemax="'.(int)$free_shipping_amount.'" style="width:'.(int)$percentage.'%" >';
+                $o[] = '<div class="progress-bar" role="progressbar" aria-valuenow="'.(int)$amountToCalculate.'" aria-valuemin="0" aria-valuemax="'.(int)$free_shipping_amount.'" style="width:'.(int)$percentage.'%" >';
                 $o[] = '<span class="sr-only">70% Complete</span>';
                 $o[] = '</div>';
                 $o[] = '</div>';
 
-                $o[] = '<div class="ph-plg-free-shipping-info-amounts">'. $price->getPriceFormat($total[0]['brutto']) .' / ' .$price->getPriceFormat($free_shipping_amount). '</div>';
+                $o[] = '<div class="ph-plg-free-shipping-info-amounts">'. $price->getPriceFormat($amountToCalculate) .' / ' .$price->getPriceFormat($free_shipping_amount). '</div>';
 
 
-            } else if ($free_shipping_amount < $total[0]['brutto'] || ($free_shipping_amount * 100) == ($total[0]['brutto'] * 100)) {
+            } else if ($free_shipping_amount < $amountToCalculate || ($free_shipping_amount * 100) == ($amountToCalculate * 100)) {
                 /*
                 $o[] = '<div class="ph-plg-free-shipping-info">'.  possible info about free shipping .'</div>';
                 */

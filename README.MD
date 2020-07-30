@@ -26,6 +26,8 @@ Phoca Cart View - Free Shipping Info Plugin - this plugin displays information a
 
 
 
+
+
 ## Support
 
 [Phoca Forum](https://www.phoca.cz/forum)
@@ -54,7 +56,7 @@ Phoca Cart View - Free Shipping Info Plugin - this plugin displays information a
 
 ## Version
 
-3.4.0
+3.5.3
 
 
 
