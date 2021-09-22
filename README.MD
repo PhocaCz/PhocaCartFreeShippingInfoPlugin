@@ -2,7 +2,7 @@
 
 
 
-![Phoca Cart Free Shipping Info Plugin](https://github.com/PhocaCz/PhocaCartFreeShippingInfoPlugin/blob/master/free_shipping_info.png)
+![Phoca Cart Free Shipping Info Plugin](https://github.com/PhocaCz/PhocaCartFreeShippingInfoPlugin/blob/master/free_shipping_info.png?raw=true)
 
 # Phoca Cart Free Shipping Info Plugin
 
@@ -54,9 +54,13 @@ Phoca Cart View - Free Shipping Info Plugin - this plugin displays information a
 
 
 
+
+
+
+
 ## Version
 
-3.5.4
+3.5.7
 
 
 
