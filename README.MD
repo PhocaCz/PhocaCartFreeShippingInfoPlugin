@@ -60,7 +60,7 @@ Phoca Cart View - Free Shipping Info Plugin - this plugin displays information a
 
 ## Version
 
-3.5.7
+3.5.8
 
 
 
