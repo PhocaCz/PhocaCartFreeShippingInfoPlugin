@@ -7,6 +7,8 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  */
 
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 jimport( 'joomla.plugin.plugin' );
 jimport( 'joomla.filesystem.file');
@@ -71,8 +73,8 @@ class plgPCVFree_Shipping_Info extends JPlugin
 
             $o[] = '</ul>';
 
-            $o[] = '<div class="ph-plg-product-quantity">'.JText::_('COM_PHOCACART_QUANTITY').': '.$product['current_quantity'].'</div>';
-            $o[] = '<div class="ph-plg-product-price">'.JText::_('COM_PHOCACART_PRICE').': '.$price->getPriceFormat($product['brutto']).'</div>';
+            $o[] = '<div class="ph-plg-product-quantity">'.Text::_('COM_PHOCACART_QUANTITY').': '.$product['current_quantity'].'</div>';
+            $o[] = '<div class="ph-plg-product-price">'.Text::_('COM_PHOCACART_PRICE').': '.$price->getPriceFormat($product['brutto']).'</div>';
             $o[] = '</div>';
             $o[] = '</div>';
 
@@ -89,13 +91,13 @@ class plgPCVFree_Shipping_Info extends JPlugin
         $price = new PhocacartPrice();
 
         $o = array();
-		
+
 		$amountToCalculate = 0;
 		if (isset($total[0]['netto']) && isset($total[0]['taxsum'])) {
 			$amountToCalculate = $total[0]['netto'] + $total[0]['taxsum'];
 		}
-		
-	
+
+
 
         if ($amountToCalculate > 0 && $free_shipping_amount > 0) {
 
@@ -107,7 +109,7 @@ class plgPCVFree_Shipping_Info extends JPlugin
                 $amountToDeliver = $price->getPriceFormat($amountToDeliver);
                 $percentage      = $amountToCalculate * 100 / $free_shipping_amount;
 
-                $o[] = '<div class="ph-plg-free-shipping-info">'.JText::sprintf('PLG_PCV_FREE_SHIPPING_INFO_YOU_ARE_ONLY_AWAY_FROM_FREE_SHIPPING', $amountToDeliver).'</div>';
+                $o[] = '<div class="ph-plg-free-shipping-info">'.Text::sprintf('PLG_PCV_FREE_SHIPPING_INFO_YOU_ARE_ONLY_AWAY_FROM_FREE_SHIPPING', $amountToDeliver).'</div>';
 
 
                 $o[] = '<div class="ph-plg-free-shipping-info-progress progress">';
@@ -137,7 +139,7 @@ class plgPCVFree_Shipping_Info extends JPlugin
      * @return string
      */
 
-	public function PCVonPopupAddToCartAfterHeader($context, $product, $products, $total) {
+	public function onPCVonPopupAddToCartAfterHeader($context, $product, $products, $total) {
 
 	    $o = $this->renderProductInfo($product);
         $o .= $this->renderFreeShippingInfo($total);
@@ -145,7 +147,7 @@ class plgPCVFree_Shipping_Info extends JPlugin
 
     }
 
-    public function PCVonCheckoutAfterCart($context, $access, &$params, $total) {
+    public function onPCVonCheckoutAfterCart($context, $access, &$params, $total) {
 
         $display_checkout_view = $this->params->get('display_checkout_view', 0);
         if ($display_checkout_view == 0) {
